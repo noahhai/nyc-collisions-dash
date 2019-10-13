@@ -1,0 +1,54 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.0.17
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootuser
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: creditshelf
+      MYSQL_USER: api_user
+      MYSQL_PASSWORD: api_user_pass1234
+
+  script_per_borough:
+    build: ./cli
+    environment:
+      NYC_OPEN_DATA_TOKEN: '3s1YMFvzegKFyrxExuLJVRb8d'
+    command: ["python", "main.py", "--action=query", "--borough-name=QUEENS"]
+
+  script_load_incidents:
+    build: ./cli
+    environment:
+      NYC_OPEN_DATA_TOKEN: '3s1YMFvzegKFyrxExuLJVRb8d'
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: api_user
+      DB_PASSWORD: api_user_pass1234
+      DB_DATABASE: creditshelf
+    command: ["python", "main.py", "--action=load_incidents"]
+
+  script_load_stations:
+    build: ./cli
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: api_user
+      DB_PASSWORD: api_user_pass1234
+      DB_DATABASE: creditshelf
+    command: ["python", "main.py", "--action=load_stations"]
+
+  app:
+    build: ./app
+    ports:
+      - "8050:8050"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: api_user
+      DB_PASSWORD: api_user_pass1234
+      DB_DATABASE: creditshelf
+    command: ["python", "main.py"]
