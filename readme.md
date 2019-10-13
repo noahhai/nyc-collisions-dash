@@ -5,7 +5,7 @@
 ```shell script
 docker-compose up script_per_borough
 ```
-* To run the second part, and launch a visualization of the whole dataset, run ./start.sh
+* To run the second part, and launch a visualization of the whole dataset, run ./run.sh
 * Wait a few minutes for the app to come up
 * When prompted, access the app at http://127.0.0.1:8500
 ### Notes
