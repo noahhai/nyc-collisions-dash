@@ -6,6 +6,8 @@
 docker-compose up script_per_borough
 ```
 * To run the second part, and launch a visualization of the whole dataset, run ./start.sh
+* Wait a few minutes for the app to come up
+* When prompted, access the app at http://127.0.0.1:8500
 ### Notes
 * The display is based on a plotly template found in their gallery (not from scratch)
 * Your browser may have trouble loading all 1+ million data points. For this reason, it defaults to loading all incidents for a single day. Also, note that the distances from the bike share to the incident are calculated across all data points (all dates) and that we speed up their calculation by only considering points within 0.001 lon/lat of the bike share.'
