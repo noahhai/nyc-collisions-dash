@@ -18,7 +18,7 @@ services:
     build: ./cli
     environment:
       NYC_OPEN_DATA_TOKEN: '3s1YMFvzegKFyrxExuLJVRb8d'
-    command: ["python", "main.py", "--action=query", "--borough-name=QUEENS"]
+    command: ["python", "main.py", "--action=stat", "--borough-name=QUEENS"]
 
   script_load_incidents:
     build: ./cli
