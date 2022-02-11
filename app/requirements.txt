@@ -33,7 +33,7 @@ pandas==0.24.1
 percy==2.0.2
 plotly==4.1.1
 pluggy==0.13.0
-protobuf==3.10.0
+protobuf==3.15.0
 py==1.8.0
 pycparser==2.19
 pyOpenSSL==19.0.0
